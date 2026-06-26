@@ -1,4 +1,8 @@
+using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("MVCIntro2026VTContext") ?? throw new InvalidOperationException("Connection string 'MVCIntro2026VTContext' not found.");
+
+builder.Services.AddDbContext<MVCIntro2026VTContext>(options => options.UseSqlServer(connectionString));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
