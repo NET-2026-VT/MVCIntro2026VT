@@ -26,5 +26,18 @@ namespace MVCIntro2026VT.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpGet]
+        public IActionResult GetValues()
+        {
+            return View(); 
+        }
+
+        [HttpPost]
+        public IActionResult GetValues(string name, int salary)
+        {
+            return View(); 
+        }
+
     }
 }
