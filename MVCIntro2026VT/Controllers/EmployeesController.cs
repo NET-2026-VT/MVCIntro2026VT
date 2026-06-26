@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MVCIntro2026VT.Models;
+using MVCIntro2026VT.Models.ViewModels;
 
 public class EmployeesController : Controller
 {
@@ -16,6 +17,17 @@ public class EmployeesController : Controller
     public async Task<IActionResult> Index()    
     {
         return View(nameof(Index),await _context.Employee.ToListAsync());
+    }
+    public async Task<IActionResult> Index2()
+    {
+        var model = _context.Employee.Select(e => new
+        EmployeeIndexViewModel
+        {
+            Id = e.Id,
+            Name = e.Name,
+            Department = e.Department
+        });
+        return View(await model.ToListAsync());
     }
 
     // GET: EMPLOYEES/Details/5
