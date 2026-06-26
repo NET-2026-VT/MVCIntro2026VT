@@ -39,5 +39,15 @@ namespace MVCIntro2026VT.Controllers
             return View(); 
         }
 
+        public IActionResult GetValuesWithModel()
+        {
+            return View(); 
+        }
+        [HttpPost]
+        public IActionResult GetValuesWithModel(Employee employee)
+        {
+            return View(); 
+        }
+
     }
 }
