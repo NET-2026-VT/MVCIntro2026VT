@@ -30,6 +30,23 @@ public class EmployeesController : Controller
         return View(await model.ToListAsync());
     }
 
+    public async Task<IActionResult> Search(string searchField)
+    {
+        if (!string.IsNullOrEmpty(searchField))
+        {
+            var result = _context.Employee.Where(e => e.Name.Contains(searchField))
+                .Select(e => new EmployeeIndexViewModel
+                {
+                    Id = e.Id,
+                    Name = e.Name,
+                    Department = e.Department
+                });
+            return View(nameof(Index2), await result.ToListAsync());
+        }
+        else
+            return RedirectToAction(nameof(Index2)); 
+    }
+
     // GET: EMPLOYEES/Details/5
     public async Task<IActionResult> Details(int? id)
     {
