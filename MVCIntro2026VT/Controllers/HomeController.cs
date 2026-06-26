@@ -6,9 +6,14 @@ namespace MVCIntro2026VT.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(string name = "kalle")
         {
-            return View();
+            TempData["Name"] = name;
+            ViewBag.Name = name;
+
+            List<string> model = new List<string> { "Hej", "på", "dig" }; 
+
+            return View(model);
         }
 
         public IActionResult Privacy()
